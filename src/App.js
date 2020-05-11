@@ -34,6 +34,7 @@ class App extends React.Component {
           });
         });
       }
+      this.setState({ currentUser: userAuth });
     });
   }
 
@@ -50,6 +51,7 @@ class App extends React.Component {
           <Route path="/shop" component={ShopPage} />
           <Route path="/signin" component={SignInAndSignUpPage} />
         </Switch>
+        {console.log(this.state.currentUser)}
       </div>
     );
   }
