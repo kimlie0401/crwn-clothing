@@ -2,12 +2,12 @@ import { createStore, applyMiddleware, compose } from "redux";
 import logger from "redux-logger";
 import { persistStore } from "redux-persist";
 
-import rootReducer from "./root-reducer";
+import persistReducer from "./root-reducer";
 
 const middlewares = [logger];
 
 export const store = createStore(
-  rootReducer,
+  persistReducer,
   compose(
     applyMiddleware(...middlewares),
     window.navigator.userAgent.includes("Chrome")
