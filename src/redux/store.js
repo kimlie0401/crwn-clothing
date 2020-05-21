@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware, compose } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import logger from "redux-logger";
 import { persistStore } from "redux-persist";
 
@@ -12,13 +12,7 @@ if (process.env.NODE_ENV === "development") {
 
 export const store = createStore(
   persistReducer,
-  compose(
-    applyMiddleware(...middlewares),
-    window.navigator.userAgent.includes("Chrome")
-      ? window.__REDUX_DEVTOOLS_EXTENSION__ &&
-          window.__REDUX_DEVTOOLS_EXTENSION__()
-      : compose
-  )
+  applyMiddleware(...middlewares)
 );
 
 export const persistor = persistStore(store);
