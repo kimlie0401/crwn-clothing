@@ -5,6 +5,9 @@ import thunk from "redux-thunk";
 
 import persistReducer from "./root-reducer";
 
+import { composeWithDevTools } from "redux-devtools-extension";
+import { compose } from "redux";
+
 const middlewares = [thunk];
 
 if (process.env.NODE_ENV === "development") {
@@ -13,7 +16,7 @@ if (process.env.NODE_ENV === "development") {
 
 export const store = createStore(
   persistReducer,
-  applyMiddleware(...middlewares)
+  compose(applyMiddleware(...middlewares), composeWithDevTools())
 );
 
 export const persistor = persistStore(store);
