@@ -1,5 +1,23 @@
-import styled from "styled-components";
+import styled, { keyframes, css } from "styled-components";
 import CustomButton from "../custom-button/custom-button.component";
+
+const slideIn = keyframes`
+  from {
+    transform: translateX(300px);
+  }
+  to {
+    transform: translateX(0px);
+  }
+`;
+
+const slideOut = keyframes`
+  from {
+    transform: translateX(0px);
+  }
+  to {
+    transform: translateX(300px);
+  }
+`;
 
 export const CartDropdownContainer = styled.div`
   position: absolute;
@@ -13,6 +31,17 @@ export const CartDropdownContainer = styled.div`
   top: 90px;
   right: 40px;
   z-index: 5;
+
+  animation-duration: 0.25s;
+  animation-timing-function: ease-out;
+  animation-name: ${slideIn};
+  animation-fill-mode: forwards;
+
+  ${(props) =>
+    props.disappear &&
+    css`
+      animation-name: ${slideOut};
+    `}
 `;
 
 export const CartDropdownButton = styled(CustomButton)`
